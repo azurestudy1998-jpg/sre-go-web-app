@@ -1,0 +1,45 @@
+name: Go Application CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  test:
+    name: Test Go Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26'
+
+      - name: Run tests
+        run: go test ./...
+
+  build:
+    name: Build Go Application
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26'
+
+      - name: Build application
+        run: go build -o sre-go-web-app .
