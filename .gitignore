@@ -4,3 +4,8 @@
 .env.*
 bin/
 tmp/
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
