@@ -1,0 +1,18 @@
+replicaCount: 2
+
+image:
+  repository: 724413958876.dkr.ecr.us-east-1.amazonaws.com/sre-go-web-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+containerPort: 8080
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: false
+  className: nginx
+  host: go-web-app.example.com

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: {{ include "sre-go-web-app.fullname" . }}
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: {{ include "sre-go-web-app.name" . }}
+
+  template:
+    metadata:
+      labels:
+        app: {{ include "sre-go-web-app.name" . }}
+
+    spec:
+      containers:
+        - name: sre-go-web-app
+
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+          ports:
+            - name: http
+              containerPort: {{ .Values.containerPort }}
+
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: {{ .Values.containerPort }}
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.containerPort }}
