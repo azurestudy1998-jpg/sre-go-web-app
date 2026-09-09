@@ -20,7 +20,7 @@ spec:
       containers:
         - name: sre-go-web-app
 
-          image: 724413958876.dkr.ecr.us-east-1.amazonaws.com/sre-go-web-app:1a0b022f878005324b37757fa142d642492a914e
+          image: 724413958876.dkr.ecr.us-east-1.amazonaws.com/sre-go-web-app:a8d2a78e1523026e69716c60f1c897647fd12c9d
 
           ports:
             - containerPort: 8080
