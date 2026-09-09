@@ -71,7 +71,7 @@ func (r *statusRecorder) WriteHeader(statusCode int) {
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Hello from Go SRE Application!"))
+	w.Write([]byte("Hello from Go SRE Application - Version 2!"))
 }
 
 func healthHandler(w http.ResponseWriter, r *http.Request) {
